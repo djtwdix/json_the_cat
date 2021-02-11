@@ -5,7 +5,7 @@ const request = require('request');
 //fetchBreedDescription takes in breedName and callback
 const fetchBreedDescription = (breedName, callback) => {
   //send get request to cat API with breedName as search query
-  request(`https://api.thectapi.com/v1/breeds/search?q=${breedName}`, (err, response, body) => {
+  request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (err, response, body) => {
     //if error input error as first parameter of callback
     if (err) {
       callback(err, null);
@@ -17,7 +17,7 @@ const fetchBreedDescription = (breedName, callback) => {
         callback(null, "We're sorry this breed is not in our database or does not exist, please try another breed");
         //if there is something in data input data as second param in callback
       } else {
-        callback(null, data);
+        callback(null, data[0].description);
       }
     }
   });
