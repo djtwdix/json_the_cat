@@ -14,7 +14,7 @@ const fetchBreedDescription = (breedName, callback) => {
       const data = JSON.parse(body);
       //if there is nothing in data input apology message as second param in callback
       if (!data[0]) {
-        callback(null, "We're sorry this breed is not in our database or does not exist, please try another breed");
+        callback("We're sorry this breed is not in our database or does not exist, please try another breed", null);
         //if there is something in data input data as second param in callback
       } else {
         callback(null, data[0].description);

@@ -18,12 +18,12 @@ describe('fetchBreedDescription', () => {
   it('returns a string description for a valid breed, via callback', (done) => {
     fetchBreedDescription('kjhasd', (err, desc) => {
       // we expect no error for this scenario
-      assert.equal(err, null);
+      assert.equal(desc, null);
 
       const expectedDesc = "We're sorry this breed is not in our database or does not exist, please try another breed";
 
       // compare returned description
-      assert.equal(expectedDesc, desc.trim());
+      assert.equal(expectedDesc, err.trim());
 
       done();
     });
