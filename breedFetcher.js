@@ -8,7 +8,7 @@ const fetchBreedDescription = (breedName, callback) => {
   request(`https://api.thectapi.com/v1/breeds/search?q=${breedName}`, (err, response, body) => {
     //if error input error as first parameter of callback
     if (err) {
-      callback(err, null)
+      callback(err, null);
     } else {
       //parse body to turn into object
       const data = JSON.parse(body);
@@ -21,6 +21,6 @@ const fetchBreedDescription = (breedName, callback) => {
       }
     }
   });
-}
+};
 
 module.exports = fetchBreedDescription;
