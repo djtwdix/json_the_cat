@@ -7,7 +7,8 @@ const request = require('request');
 request(`https://api.thectapi.com/v1/breeds/search?q=${breedGiven}`, (err, response, body) => {
   //if error throw error
   if (err) {
-    throw err;
+    console.log(err);
+    process.exit();
   } else {
     //parse body to turn into object
     const data = JSON.parse(body);
