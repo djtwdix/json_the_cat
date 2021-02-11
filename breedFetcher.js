@@ -1,29 +1,26 @@
-//Get command line arguments and join them into single string
-const breedGiven = process.argv.splice(2).join("");
+
 //require request
 const request = require('request');
 
+//fetchBreedDescription takes in breedName and callback
 const fetchBreedDescription = (breedName, callback) => {
-  //send get request to cat API with breedGiven as search query
-  request(`https://api.thecatapi.com/v1/breeds/search?q=${breedGiven}`, (err, response, body) => {
-    //if error print error to console and exit
+  //send get request to cat API with breedName as search query
+  request(`https://api.thectapi.com/v1/breeds/search?q=${breedName}`, (err, response, body) => {
+    //if error input error as first parameter of callback
     if (err) {
-      console.log(err);
-      process.exit();
+      callback(err, null)
     } else {
       //parse body to turn into object
       const data = JSON.parse(body);
-      //if there is nothing in data print breed is not in database
+      //if there is nothing in data input apology message as second param in callback
       if (!data[0]) {
-        console.log("We're sorry this breed is not in our database or does not exist, please try another breed");
-        //if there is something in data print data
+        callback(null, "We're sorry this breed is not in our database or does not exist, please try another breed");
+        //if there is something in data input data as second param in callback
       } else {
-        console.log(data);
+        callback(null, data);
       }
     }
   });
 }
 
-fetchBreedDescription();
-
-module.exports = { fetchBreedDescription };
+module.exports = fetchBreedDescription;
